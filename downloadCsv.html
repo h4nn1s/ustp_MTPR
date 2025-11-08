@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV File Input</title>
+</head>
+<body>
+    <form id="inputForm">
+        <label for="dateInput">Date:</label>
+        <input type="date" id="dateInput" name="date">
+        <label for="numberInput">Amount:</label>
+        <input type="number" id="numberInput" name="number">
+        <button id="submit" type="submit">Submit</button>
+    </form>
+		<br>
+    <input type="file" id="csvFile" accept=".csv">
+		<br>	<br>
+    <button id="download">Download</button>
+
+	<script src="downloadCsv.js"></script>
+</body>
+</html>

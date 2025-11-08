@@ -14,7 +14,24 @@ fileInput.addEventListener('change', function(event) {
 	reader.readAsText(file);
 });
 
+const submitButton = document.getElementById('submit');
+submitButton.addEventListener('click', function(event) {
+	event.preventDefault(); // Prevent form submission
+	const date = document.getElementById('dateInput').value;
+	const number = document.getElementById('numberInput').value;
+	if (date && number) {
+		const newLine = `\n${date};${number}`;
+		diary += newLine;
+		generateTable(diary);
+	}
+});
+
+
 function generateTable(csvString) {
+	const existingTable = document.getElementById('diaryTable');
+	if (existingTable) {
+		existingTable.remove();
+	}
 	const lines = csvString.split('\n');
 	const table = document.createElement('table');
 	table.id = 'diaryTable';
@@ -34,3 +51,20 @@ function generateTable(csvString) {
 	document.body.appendChild(table);
 }
 
+function downloadCSV() {
+	const blob = new Blob([diary], { type: 'text/csv' });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement('a');
+	a.href = url;
+	a.download = 'diary.csv';
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
+	URL.revokeObjectURL(url);
+}
+
+const downloadButton = document.getElementById('download');
+downloadButton.addEventListener('click', downloadCSV);
+
+// 
+// 
