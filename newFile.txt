@@ -1,0 +1,47 @@
+Infant Feeding & Sleep Snapshot:
+1.Purpose:
+I want a tiny web page that helps me quickly see how my child’s day went. I will give the page a small file with daily data, and JavaScript will create the interface automatically. The page shows one card per day with key numbers and clear badges (e.g., “Under target fluids”). This makes it easy to spot days that need attention.
+2.Input:
+I’ll upload a small CSV file (or paste text) with one row per day:
+date (YYYY-MM-DD)
+breastfeeds (count)
+solids (grams)
+water (milliliters consumed)
+target water (daily target ml)
+naps total (total daytime sleep in minutes)
+night wakings(count)
+
+3.How the page works:
+I click “Load file” and select my CSV.
+JavaScript reads the file and parses each row.
+For every day (row), the script creates a “day card” on the page.
+The card shows the numbers and a tiny hydration bar (water vs target).
+The page also adds badges based on simple rules (see below).
+I can turn on filters (checkboxes) to only see days with issues.
+4.What the page shows:
+Top area:
+Button to load CSV
+Filters: Low solids / Under hydration / Poor naps / Many wakings
+Quick stats: simple averages across the days (e.g., average hydration %)
+Main area:
+A grid of day cards (newest first). Each card shows:
+Date
+Breastfeeds (number)
+Solids (grams)
+Water (ml) and Target (ml)
+Hydration bar (short horizontal bar, longer = closer to or above target)
+Naps total (minutes)
+Night wakings (count)
+Badges (e.g., “Under target fluids”)
+5.Simple rules for badges:
+Under target fluids: if water_ml / target_water_ml < 1.0
+Low solids: if solids_grams < 100
+Poor naps: if naps_total_min < 90
+Many wakings: if night_wakings > 2
+Looks good: shown if none of the above apply
+(These thresholds can be adjusted later.)
+6.Questions this page answers:
+Which days were under the hydration target (and by how much)?
+Which days had low solids or short naps?
+What are the average solids, hydration %, naps, and wakings over the loaded days?
+Are there repeating patterns across several days?
